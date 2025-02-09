@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainLayoutComponent } from './main-layout.component';
+import { BlankLayoutComponent } from './blank-layout.component';
 
-describe('MainLayoutComponent', () => {
-  let component: MainLayoutComponent;
-  let fixture: ComponentFixture<MainLayoutComponent>;
+describe('BlankLayoutComponent', () => {
+  let component: BlankLayoutComponent;
+  let fixture: ComponentFixture<BlankLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MainLayoutComponent]
+      imports: [BlankLayoutComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MainLayoutComponent);
+    fixture = TestBed.createComponent(BlankLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

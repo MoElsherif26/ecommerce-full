@@ -4,11 +4,11 @@ import { FooterComponent } from '../footer/footer.component';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-auth-layout',
+  selector: 'app-blank-layout',
   imports: [NavbarComponent, FooterComponent, RouterOutlet],
-  templateUrl: './auth-layout.component.html',
-  styleUrl: './auth-layout.component.scss'
+  templateUrl: './blank-layout.component.html',
+  styleUrl: './blank-layout.component.scss'
 })
-export class AuthLayoutComponent {
+export class BlankLayoutComponent {
 
 }
