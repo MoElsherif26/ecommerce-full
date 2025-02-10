@@ -2,3 +2,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.main-btn {
+  @apply bg-green-500 text-white block ms-auto rounded-md px-6 py-2 hover:bg-green-700 disabled:bg-green-900
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: "Playfair Display", serif;
+}
