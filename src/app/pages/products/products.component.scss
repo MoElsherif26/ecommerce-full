@@ -1,0 +1,14 @@
+.card {
+    overflow: hidden;
+    button {
+      transform: translateY(250%);
+      transition: all 0.4s;
+  
+    }
+    &:hover {
+      button {
+        transform: translateY(0);
+      }
+    }
+}
+

@@ -1,14 +1,21 @@
+import { CartService } from './../../core/services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../core/services/products.service';
-import { get } from 'http';
 import { Product } from '../../core/interfaces/product';
 import { CategoriesService } from '../../core/services/categories.service';
 import { Category } from '../../core/interfaces/category';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { RouterLink } from '@angular/router';
+import { CurrencyPipe, DatePipe, JsonPipe, LowerCasePipe, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { OnSalePipe } from '../../shared/pipes/on-sale.pipe';
+import { TrimTextPipe } from '../../shared/pipes/trim-text.pipe';
+import { SearchPipe } from '../../shared/pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule],
+  // imports: [CarouselModule, FormsModule, RouterLink, UpperCasePipe, LowerCasePipe, TitleCasePipe, SlicePipe, CurrencyPipe, DatePipe, JsonPipe, OnSalePipe, TrimTextPipe, SearchPipe],
+  imports: [CarouselModule, FormsModule, RouterLink, TitleCasePipe, CurrencyPipe, SearchPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -16,7 +23,8 @@ export class HomeComponent implements OnInit {
 
   productList: Product[] = [];
   categoriesList: Category[] = [];
-
+  currentDate = new Date();
+  searchTerm: string = '';
 
   customMainSlider: OwlOptions = {
     loop: true,
@@ -56,7 +64,7 @@ export class HomeComponent implements OnInit {
     nav: true
   }
 
-  constructor(private products: ProductsService, private categories: CategoriesService) { }
+  constructor(private products: ProductsService, private categories: CategoriesService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -70,7 +78,7 @@ export class HomeComponent implements OnInit {
           this.productList = res.data;
         },
         error: (error) => {
-          console.log(error);
+          // console.log(error);
         }
       }
     );
@@ -83,10 +91,21 @@ export class HomeComponent implements OnInit {
           this.categoriesList = res.data;
         },
         error: (error) => {
-          console.log(error);
+          // console.log(error);
         }
       }
     );
+  }
+
+  addToCart(productId: string) {
+    this.cartService.addToCart(productId).subscribe({
+      next: (res) => {
+
+      },
+      error: (err) => {
+        
+      }
+    });
   }
 
 

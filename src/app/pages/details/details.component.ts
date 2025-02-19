@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { CartService } from './../../core/services/cart.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from '../../core/services/products.service';
+import { Product } from '../../core/interfaces/product';
 
 @Component({
   selector: 'app-details',
@@ -6,6 +10,49 @@ import { Component } from '@angular/core';
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
-export class DetailsComponent {
+export class DetailsComponent implements OnInit {
+
+
+  id:string = "";
+  productData: Product = {} as Product;
+
+  constructor(private activatedRoute: ActivatedRoute, private products: ProductsService, private cartService: CartService) {
+
+  }
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe({
+      next: (p) => {
+        // console.log(p);
+        this.id = p.get('id') as string;
+        // console.log(this.id);
+        this.getProductDetails();
+      }
+
+
+    });
+  }
+
+  getProductDetails() {
+    this.products.getSpecificProduct(this.id).subscribe({
+      next: (res) => {
+        // console.log(res);
+        this.productData = res.data;
+      },
+      error: (err) => {
+        // console.log(err);
+      }
+    });
+  }
+
+  addToCart(productId: string) {
+    this.cartService.addToCart(productId).subscribe({
+      next: (res) => {
+        // console.log(res);
+      },
+      error: (err) => {
+        // console.log(err);
+      }
+    });
+  }
 
 }

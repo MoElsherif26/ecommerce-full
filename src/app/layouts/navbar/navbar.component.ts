@@ -1,3 +1,4 @@
+import { AuthService } from './../../core/services/auth.service';
 import { Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -8,7 +9,13 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-
   @Input() isLogin: boolean = true;
+
+  constructor(private authService: AuthService) {
+
+  }
+  logout() {
+    this.authService.logout();
+  }
 
 }

@@ -4,6 +4,8 @@ import { Brand } from './brand';
 
 export interface Product {
   sold: number
+  count: number
+  product: Product
   images: string[]
   subcategory: Subcategory[]
   ratingsQuantity: number

@@ -1,1 +1,99 @@
-<p>checkout works!</p>
+<section>
+    <h1 class="text-green-600 text-4xl my-4 text-center capitalize">Checkout Details</h1>
+    <form class="w-[80%] mx-auto" [formGroup]="checkOutForm" (ngSubmit)="submitForm()">
+        <!-- @if (forgotPasswordErrorMessage != '') {
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50" role="alert">
+              <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+              </svg>
+              <span class="sr-only">Danger</span>
+              <div>
+                <span class="font-medium">Danger alert!</span> {{forgotPasswordErrorMessage}}
+              </div>
+            </div>
+          } -->
+        <div class="mb-2">
+            <label for="details" class="block mb-2 text-sm font-medium text-gray-900">Address Details</label>
+            <textarea formControlName="details" id="details" type="text" class="bg-white border block w-full p-2.5 border-gray-300 text-sm text-gray-900 rounded-lg focus:ring-green-500 focus:border-green-500"></textarea>
+            
+            @if (checkOutForm.get('details')?.errors && checkOutForm.get('details')?.touched) {
+                <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                  <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                  </svg>
+                  <span class="sr-only">Danger</span>
+                  <div>
+                    <span class="font-medium">Ensure that these requirements are met:</span>
+                      <ul class="mt-1.5 list-disc list-inside">
+                        @if (checkOutForm.get('details')?.hasError('required')) {
+                          <li>Address Details is Required</li>
+        
+                        }
+                        @if (checkOutForm.get('details')?.hasError('minlength')) {
+                          <li>Address details min lenght is 10 chars</li>
+        
+                        }
+                    </ul>
+                  </div>
+                </div>
+              }
+        </div>
+
+
+        <div class="mb-2">
+            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Phone number</label>
+            <input formControlName="phone" id="phone" type="tel" class="bg-white border block w-full p-2.5 border-gray-300 text-sm text-gray-900 rounded-lg focus:ring-green-500 focus:border-green-500">
+            
+            @if (checkOutForm.get('phone')?.errors && checkOutForm.get('phone')?.touched) {
+                <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                  <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                  </svg>
+                  <span class="sr-only">Danger</span>
+                  <div>
+                    <span class="font-medium">Ensure that these requirements are met:</span>
+                      <ul class="mt-1.5 list-disc list-inside">
+                        @if (checkOutForm.get('phone')?.hasError('required')) {
+                          <li>Phone is Required</li>
+        
+                        }
+                        @if (checkOutForm.get('phone')?.hasError('pattern')) {
+                          <li>Enter Egyptian number</li>
+        
+                        }
+                    </ul>
+                  </div>
+                </div>
+              }
+        </div>
+        <div class="mb-2">
+            <label for="city" class="block mb-2 text-sm font-medium text-gray-900">city</label>
+            <input formControlName="city" id="city" type="text" class="bg-white border block w-full p-2.5 border-gray-300 text-sm text-gray-900 rounded-lg focus:ring-green-500 focus:border-green-500">
+            
+            @if (checkOutForm.get('city')?.errors && checkOutForm.get('city')?.touched) {
+                <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                  <svg class="shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                  </svg>
+                  <span class="sr-only">Danger</span>
+                  <div>
+                    <span class="font-medium">Ensure that these requirements are met:</span>
+                      <ul class="mt-1.5 list-disc list-inside">
+                        @if (checkOutForm.get('city')?.hasError('required')) {
+                          <li>city is required</li>
+        
+                        }
+                        @if (checkOutForm.get('city')?.hasError('minlength')) {
+                          <li>city min length is 3 chars</li>
+        
+                        }
+                    </ul>
+                  </div>
+                </div>
+              }
+        </div>
+
+        <button class="main-btn my-4" type="submit">Online Payment</button>
+
+    </form>
+</section>
