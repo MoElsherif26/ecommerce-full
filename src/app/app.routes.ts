@@ -22,7 +22,12 @@ export const routes: Routes = [
     {path: "categories", canActivate: [authGuard], loadComponent: () => import("./pages/categories/categories.component").then((c) => c.CategoriesComponent), title: "categories"},
     {path: "products", canActivate: [authGuard], loadComponent: () => import("./pages/products/products.component").then((c) => c.ProductsComponent), title: "products"},
     {path: "allorders", canActivate: [authGuard], loadComponent: () => import("./pages/all-orders/all-orders.component").then((c) => c.AllOrdersComponent), title: "all orders"},
-    {path: "check-out/:id", canActivate: [authGuard], loadComponent: () => import("./pages/checkout/checkout.component").then((c) => c.CheckoutComponent), title: "checkout"},
+    {
+      path: "check-out/:id", 
+      canActivate: [authGuard], loadComponent: () => import("./pages/checkout/checkout.component").then((c) => c.CheckoutComponent), 
+      title: "checkout",
+      data: { renderMode: 'server' }
+    },
     {path: "details/:id", canActivate: [authGuard], loadComponent: () => import("./pages/details/details.component").then((c) => c.DetailsComponent), title: "details"},
 
     {path: "**", loadComponent: () => import("./pages/not-found/not-found.component").then((c) => c.NotFoundComponent), title: "not-found"}
