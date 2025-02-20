@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../core/services/products.service';
 import { Product } from '../../core/interfaces/product';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-details',
@@ -16,7 +17,9 @@ export class DetailsComponent implements OnInit {
   id:string = "";
   productData: Product = {} as Product;
 
-  constructor(private activatedRoute: ActivatedRoute, private products: ProductsService, private cartService: CartService) {
+  constructor(private activatedRoute: ActivatedRoute, private products: ProductsService, private cartService: CartService,
+    private toastr: ToastrService
+  ) {
 
   }
   ngOnInit(): void {
@@ -47,12 +50,16 @@ export class DetailsComponent implements OnInit {
   addToCart(productId: string) {
     this.cartService.addToCart(productId).subscribe({
       next: (res) => {
-        // console.log(res);
+        this.showSuccess(res.message);
       },
       error: (err) => {
         // console.log(err);
       }
     });
+  }
+
+  showSuccess(message: string) {
+    this.toastr.success(message);
   }
 
 }

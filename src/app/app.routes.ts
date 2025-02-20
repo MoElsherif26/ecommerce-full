@@ -1,5 +1,3 @@
-import { AllOrdersComponent } from './pages/all-orders/all-orders.component';
-import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { Routes } from '@angular/router';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
@@ -26,7 +24,7 @@ export const routes: Routes = [
       path: "check-out/:id", 
       canActivate: [authGuard], loadComponent: () => import("./pages/checkout/checkout.component").then((c) => c.CheckoutComponent), 
       title: "checkout",
-      data: { renderMode: 'server' }
+      // data: { renderMode: 'server' }
     },
     {path: "details/:id", canActivate: [authGuard], loadComponent: () => import("./pages/details/details.component").then((c) => c.DetailsComponent), title: "details"},
 

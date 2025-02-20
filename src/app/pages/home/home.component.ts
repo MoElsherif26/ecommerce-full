@@ -6,11 +6,10 @@ import { CategoriesService } from '../../core/services/categories.service';
 import { Category } from '../../core/interfaces/category';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
-import { CurrencyPipe, DatePipe, JsonPipe, LowerCasePipe, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
-import { OnSalePipe } from '../../shared/pipes/on-sale.pipe';
-import { TrimTextPipe } from '../../shared/pipes/trim-text.pipe';
+import { CurrencyPipe, TitleCasePipe } from '@angular/common';
 import { SearchPipe } from '../../shared/pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -64,7 +63,9 @@ export class HomeComponent implements OnInit {
     nav: true
   }
 
-  constructor(private products: ProductsService, private categories: CategoriesService, private cartService: CartService) { }
+  constructor(private products: ProductsService, private categories: CategoriesService, private cartService: CartService, 
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -100,7 +101,7 @@ export class HomeComponent implements OnInit {
   addToCart(productId: string) {
     this.cartService.addToCart(productId).subscribe({
       next: (res) => {
-
+        this.showSuccess(res.message);
       },
       error: (err) => {
         
@@ -108,5 +109,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  showSuccess(message: string) {
+    this.toastr.success(message);
+  }
+
+  
 
 }
