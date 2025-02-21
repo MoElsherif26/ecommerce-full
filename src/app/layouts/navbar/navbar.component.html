@@ -4,7 +4,7 @@
       <img src="/images/freshcart-logo.svg" alt="freshcart logo">
     </a>
     <button data-collapse-toggle="navbar-default" type="button"
-      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-900 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
       aria-controls="navbar-default" aria-expanded="false">
       <span class="sr-only">Open main menu</span>
       <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -26,12 +26,16 @@
             routerLinkActive="active bg-green-500">Cart
             <i class="fa fa-shopping-cart relative">
               <div
-                class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-green-500 border-2 border-l rounded-full bottom-3">
+                class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-green-500 border-2 border-l rounded-full bottom-3 left-3">
                 {{cartCount}}</div>
 
             </i>
 
           </a>
+        </li>
+        <li>
+          <a class="block py-2 px-3 text-white rounded-sm" aria-current="page" routerLink="/allorders"
+            routerLinkActive="active bg-green-500">Orders</a>
         </li>
         <li>
           <a class="block py-2 px-3 text-white rounded-sm" aria-current="page" routerLink="/brands"

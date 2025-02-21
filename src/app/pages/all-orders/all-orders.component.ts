@@ -1,10 +1,11 @@
+import { CurrencyPipe, DatePipe, TitleCasePipe } from '@angular/common';
 import { Order } from '../../core/interfaces/order';
 import { OrdersService } from './../../core/services/orders.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-all-orders',
-  imports: [],
+  imports: [CurrencyPipe, TitleCasePipe, DatePipe],
   templateUrl: './all-orders.component.html',
   styleUrl: './all-orders.component.scss'
 })

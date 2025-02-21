@@ -1,37 +1,99 @@
-<div class="orders-container">
-  <h2>User Orders</h2>
-  <div>
-    @if (orders.length > 0) {
-    @for (order of orders; track $index) {
-    <div class="order-card">
-      <h3>Order #{{ order.id }}</h3>
-      <p><strong>Status:</strong> {{ order.isDelivered ? 'Delivered' : 'Not Delivered' }}</p>
-      <p><strong>Payment:</strong> {{ order.isPaid ? 'Paid' : 'Unpaid' }}</p>
-      <p><strong>Payment Method:</strong> {{ order.paymentMethodType }}</p>
-      <p><strong>Total Price:</strong> ${{ order.totalOrderPrice }}</p>
+<div class="max-w-6xl mx-auto px-4 py-8">
+  <h2 class="text-3xl font-bold text-gray-800 mb-8 border-b pb-4 flex items-center gap-2">
+    <i class="fas fa-box-open text-blue-500"></i>
+    Order History
+  </h2>
 
-      <h4>Shipping Address</h4>
-      <p>{{ order.shippingAddress.details }}, {{ order.shippingAddress.city }}</p>
-      <p><strong>Phone:</strong> {{ order.shippingAddress.phone }}</p>
+  @if (orders.length > 0) {
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
+      @for (order of orders; track $index) {
+        <div class="bg-white rounded-xl shadow-2xl hover:bg-gray-200 duration-200 p-6">
+          <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4">
+            <div>
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Order #{{ order.id }}
+                <span class="text-sm ml-2 {{ order.isDelivered ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }} px-3 py-1 rounded-full">
+                  {{ order.isDelivered ? 'Delivered' : 'Processing' }}
+                </span>
+              </h3>
+              <div class="flex flex-wrap gap-4 text-sm">
+                <div class="{{ order.isPaid ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800' }} px-3 py-1 rounded-full">
+                  <i class="fas {{ order.isPaid ? 'fa-check-circle' : 'fa-times-circle' }} mr-2"></i>
+                  {{ order.isPaid ? 'Paid' : 'Unpaid' }}
+                </div>
+                <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                  <i class="fas {{ order.paymentMethodType === 'card' ? 'fa-credit-card' : 'fa-money-bill-wave' }} mr-2"></i>
+                  {{ order.paymentMethodType | titlecase }}
+                </div>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-2xl font-bold text-gray-800">
+                {{ order.totalOrderPrice | currency }}
+              </p>
+              <p class="text-sm text-gray-500">Ordered on: {{ order.createdAt | date }}</p>
+            </div>
+          </div>
 
-      <h4>Items:</h4>
-      @for (item of order.cartItems; track $index) {
-      <div class="order-item">
-        <img [src]="item.product.imageCover" alt="" class="product-image">
-        <div>
-          <p><strong>{{ item.product.title }}</strong></p>
-          <p>Brand: {{ item.product.brand.name }}</p>
-          <p>Price: ${{ item.price }}</p>
-          <p>Quantity: {{ item.count }}</p>
+          <div class="grid md:grid-cols-2 gap-6 border-t pt-4 mt-4">
+            <div>
+              <h4 class="font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                <i class="fas fa-truck text-blue-500"></i>
+                Shipping Address
+              </h4>
+              <div class="text-gray-600 space-y-1">
+                <p class="flex items-center gap-2">
+                  <i class="fas fa-map-marker-alt w-5"></i>
+                  {{ order.shippingAddress.details }}
+                </p>
+                <p class="flex items-center gap-2">
+                  <i class="fas fa-city w-5"></i>
+                  {{ order.shippingAddress.city }}
+                </p>
+                <p class="flex items-center gap-2">
+                  <i class="fas fa-phone w-5"></i>
+                  {{ order.shippingAddress.phone }}
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                <i class="fas fa-boxes text-blue-500"></i>
+                Order Items ({{ order.cartItems.length }})
+              </h4>
+              <div class="space-y-4">
+                @for (item of order.cartItems; track $index) {
+                  <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                    <img [src]="item.product.imageCover" alt="" 
+                         class="w-16 h-16 object-contain border rounded-lg">
+                    <div class="flex-1">
+                      <p class="font-medium text-gray-800">{{ item.product.title }}</p>
+                      <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+                        <p>Brand: {{ item.product.brand?.name || 'N/A' }}</p>
+                        <p>Qty: {{ item.count }}</p>
+                        <p>Price: {{ item.price | currency }}</p>
+                      </div>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
       }
     </div>
-    }
-    }
-    @else {
-    <p>No orders found.</p>
-
-    }
-  </div>
+  }
+  @else {
+    <div class="text-center py-20 bg-gray-50 rounded-xl">
+      <div class="text-6xl text-gray-300 mb-4">
+        <i class="fas fa-box-open"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-gray-500 mb-4">No orders found</h3>
+      <a routerLink="/products" 
+         class="inline-block bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+        Start Shopping
+      </a>
+    </div>
+  }
 </div>
