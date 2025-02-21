@@ -38,17 +38,14 @@ export class RegisterComponent {
 
   submit() {
     if (this.registerForm.valid) {
-      // console.log(this.registerForm);
       this.isLoading = true;
       this.authService.register(this.registerForm.value).subscribe({
         next: (res) => {
-          // console.log(res);
           this.isLoading = false;
           // navigate to login
           this.router.navigate(['/login']);
         },
         error: (err) => {
-          // console.log(err);
           this.isLoading = false;
           // display problem message
           this.errorMessage = err.error.message;

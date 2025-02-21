@@ -5,4 +5,4 @@ export interface CartItem {
     _id: string
     product: Product
     price: number
-  }
+}

@@ -33,7 +33,6 @@ export class ProductsComponent implements OnInit {
           this.productList = res.data;
         },
         error: (error) => {
-          // console.log(error);
         }
       }
     );

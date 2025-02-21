@@ -26,23 +26,19 @@ export class LoginComponent {
 
   submit() {
     if (this.loginForm.valid) {
-      // console.log(this.loginForm);
       this.isLoading = true;
       this.authService.login(this.loginForm.value).subscribe({
         next: (res) => {
-          // console.log(res);
           this.isLoading = false;
 
           // get token
           localStorage.setItem('userToken', res.token);
           this.authService.decodeToken();
-          // console.log(this.authService.userData);
 
           // navigate to login
           this.router.navigate(['/home']);
         },
         error: (err) => {
-          // console.log(err);
           this.isLoading = false;
           // display problem message
           this.errorMessage = err.error.message;

@@ -32,7 +32,6 @@ export class OrdersService {
 
   getUserOrders() {
     this.authService.decodeToken();
-    // this.authService.userData.id;
     return this.http.get(`${this.baseUrl}/api/v1/orders/user/${this.authService.userData.id}`);
   }
 

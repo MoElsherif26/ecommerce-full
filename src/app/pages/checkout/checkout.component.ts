@@ -36,11 +36,9 @@ export class CheckoutComponent implements OnInit {
     if (this.checkOutForm.valid) {
       this.orders.onlinePayment(this.cartId, this.checkOutForm.value).subscribe({
         next: (res) => {
-          console.log(res);
           window.open(res.session.url, "_self");
         },
         error: (err) => {
-          // console.log(err);  
         }
       });
     } 

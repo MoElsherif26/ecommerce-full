@@ -5,10 +5,8 @@ import { inject, PLATFORM_ID } from '@angular/core';
 export const headersInterceptor: HttpInterceptorFn = (req, next) => {
   
   const platformId = inject(PLATFORM_ID);
-  
-  // Ensure we're running in the browser before accessing localStorage
   if (isPlatformBrowser(platformId)) {
-    const token = localStorage.getItem('userToken'); // Adjust key if necessary
+    const token = localStorage.getItem('userToken'); 
 
     if (token) {
       req = req.clone({

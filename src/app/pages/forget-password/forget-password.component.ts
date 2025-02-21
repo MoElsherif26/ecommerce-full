@@ -37,13 +37,11 @@ export class ForgetPasswordComponent {
     if (this.forgotPasswordForm.valid) {
       this.authService.forgotPassword(this.forgotPasswordForm.value).subscribe({
         next: (res) => {
-          // console.log(res);
           // Save the email for later steps
           this.userEmail = this.forgotPasswordForm.value.email;
           this.steps = 2;
         },
         error: (err) => {
-          // console.log(err);
           this.forgotPasswordErrorMessage = err.error.message;
         }
       });
@@ -57,7 +55,6 @@ export class ForgetPasswordComponent {
     if (this.verifyResetCodeForm.valid) {
       this.authService.verifyResetCode(this.verifyResetCodeForm.value).subscribe({
         next: (res) => {
-          // console.log(res);
           // Patch the saved email into resetPasswordForm
           this.resetPasswordForm.patchValue({ email: this.userEmail });
           // Optionally disable the email field so it cannot be edited
@@ -66,7 +63,6 @@ export class ForgetPasswordComponent {
           this.steps = 3;
         },
         error: (err) => {
-          // console.log(err);
           this.verifyResetCodeErrorMessage = err.error.message;
         }
       });
@@ -82,11 +78,9 @@ export class ForgetPasswordComponent {
       const formData = this.resetPasswordForm.getRawValue(); // Includes email
       this.authService.resetPassword(formData).subscribe({
         next: (res) => {
-          // console.log(res);
           this.router.navigate(['/login']);
         },
         error: (err) => {
-          // console.log(err);
           this.resetPasswordErrorMessage = err.error.message;
         }
       });

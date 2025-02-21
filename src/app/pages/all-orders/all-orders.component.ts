@@ -19,10 +19,8 @@ export class AllOrdersComponent implements OnInit {
     this.ordersService.getUserOrders().subscribe({
       next: (res) => {
         this.orders = res as Order[];
-        console.log(res);
       }, 
       error: (err) => {
-        // console.log(err);
       }
     })
   }

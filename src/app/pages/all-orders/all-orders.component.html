@@ -1,38 +1,37 @@
 <div class="orders-container">
-    <h2>User Orders</h2>
-    <div>
-      @if (orders.length > 0) {
-        @for (order of orders; track $index) {
-            <div class="order-card">
-                <h3>Order #{{ order.id }}</h3>
-                <p><strong>Status:</strong> {{ order.isDelivered ? 'Delivered' : 'Not Delivered' }}</p>
-                <p><strong>Payment:</strong> {{ order.isPaid ? 'Paid' : 'Unpaid' }}</p>
-                <p><strong>Payment Method:</strong> {{ order.paymentMethodType }}</p>
-                <p><strong>Total Price:</strong> ${{ order.totalOrderPrice }}</p>
-          
-                <h4>Shipping Address</h4>
-                <p>{{ order.shippingAddress.details }}, {{ order.shippingAddress.city }}</p>
-                <p><strong>Phone:</strong> {{ order.shippingAddress.phone }}</p>
-          
-                <h4>Items:</h4>
-                @for (item of order.cartItems; track $index) {
-                    <div class="order-item">
-                        <img [src]="item.product.imageCover" alt="" class="product-image">
-                        <div>
-                          <p><strong>{{ item.product.title }}</strong></p>
-                          <p>Brand: {{ item.product.brand.name }}</p>
-                          <p>Price: ${{ item.price }}</p>   
-                          <p>Quantity: {{ item.count }}</p>
-                        </div>
-                      </div>
-                }
-              </div>
-        }
-      }
-      @else {
-          <p>No orders found.</p>
+  <h2>User Orders</h2>
+  <div>
+    @if (orders.length > 0) {
+    @for (order of orders; track $index) {
+    <div class="order-card">
+      <h3>Order #{{ order.id }}</h3>
+      <p><strong>Status:</strong> {{ order.isDelivered ? 'Delivered' : 'Not Delivered' }}</p>
+      <p><strong>Payment:</strong> {{ order.isPaid ? 'Paid' : 'Unpaid' }}</p>
+      <p><strong>Payment Method:</strong> {{ order.paymentMethodType }}</p>
+      <p><strong>Total Price:</strong> ${{ order.totalOrderPrice }}</p>
 
+      <h4>Shipping Address</h4>
+      <p>{{ order.shippingAddress.details }}, {{ order.shippingAddress.city }}</p>
+      <p><strong>Phone:</strong> {{ order.shippingAddress.phone }}</p>
+
+      <h4>Items:</h4>
+      @for (item of order.cartItems; track $index) {
+      <div class="order-item">
+        <img [src]="item.product.imageCover" alt="" class="product-image">
+        <div>
+          <p><strong>{{ item.product.title }}</strong></p>
+          <p>Brand: {{ item.product.brand.name }}</p>
+          <p>Price: ${{ item.price }}</p>
+          <p>Quantity: {{ item.count }}</p>
+        </div>
+      </div>
       }
     </div>
+    }
+    }
+    @else {
+    <p>No orders found.</p>
+
+    }
   </div>
-  
+</div>

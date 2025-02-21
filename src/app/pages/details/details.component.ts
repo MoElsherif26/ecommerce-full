@@ -25,9 +25,7 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe({
       next: (p) => {
-        // console.log(p);
         this.id = p.get('id') as string;
-        // console.log(this.id);
         this.getProductDetails();
       }
 
@@ -38,11 +36,9 @@ export class DetailsComponent implements OnInit {
   getProductDetails() {
     this.products.getSpecificProduct(this.id).subscribe({
       next: (res) => {
-        // console.log(res);
         this.productData = res.data;
       },
       error: (err) => {
-        // console.log(err);
       }
     });
   }
@@ -53,7 +49,6 @@ export class DetailsComponent implements OnInit {
         this.showSuccess(res.message);
       },
       error: (err) => {
-        // console.log(err);
       }
     });
   }

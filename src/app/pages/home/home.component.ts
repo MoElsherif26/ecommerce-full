@@ -13,7 +13,6 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
-  // imports: [CarouselModule, FormsModule, RouterLink, UpperCasePipe, LowerCasePipe, TitleCasePipe, SlicePipe, CurrencyPipe, DatePipe, JsonPipe, OnSalePipe, TrimTextPipe, SearchPipe],
   imports: [CarouselModule, FormsModule, RouterLink, TitleCasePipe, CurrencyPipe, SearchPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -85,7 +84,6 @@ export class HomeComponent implements OnInit {
           this.productList = res.data;
         },
         error: (error) => {
-          // console.log(error);
         }
       }
     );
@@ -98,7 +96,6 @@ export class HomeComponent implements OnInit {
           this.categoriesList = res.data;
         },
         error: (error) => {
-          // console.log(error);
         }
       }
     );

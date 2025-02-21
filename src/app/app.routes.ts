@@ -24,7 +24,6 @@ export const routes: Routes = [
       path: "check-out/:id", 
       canActivate: [authGuard], loadComponent: () => import("./pages/checkout/checkout.component").then((c) => c.CheckoutComponent), 
       title: "checkout",
-      // data: { renderMode: 'server' }
     },
     {path: "details/:id", canActivate: [authGuard], loadComponent: () => import("./pages/details/details.component").then((c) => c.DetailsComponent), title: "details"},
 

@@ -9,12 +9,7 @@ export const handleErrorInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
-      // const errorMessage = err.error?.message || 'An unknown error occurred';
-
-      // toastr.error(errorMessage, 'Error'); 
       toastr.error(err.error.message); 
-
-      // return throwError(() => new Error(errorMessage));
       return throwError(() => err);
     })
   );
