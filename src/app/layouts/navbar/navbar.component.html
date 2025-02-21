@@ -9,7 +9,7 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
         </svg>
     </button>
-    <div class="hidden w-full md:flex flex-grow md:w-auto" id="navbar-default">
+    <div class="hidden w-full md:flex justify-between mx-10 grow md:w-auto" id="navbar-default">
 
       @if (isLogin) {
         <ul class="capitalize flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-3 rtl:space-x-reverse md:mt-0 md:border-0">
@@ -17,7 +17,9 @@
             <a class="block py-2 px-3 text-gray-900 rounded-sm" aria-current="page" routerLink="/home" routerLinkActive="active bg-green-500">Home</a>
           </li>
           <li>
-            <a class="block py-2 px-3 text-gray-900 rounded-sm" aria-current="page" routerLink="/cart" routerLinkActive="active bg-green-500">Cart</a>
+            <a class="block py-2 px-3 text-gray-900 rounded-sm" aria-current="page" routerLink="/cart" routerLinkActive="active bg-green-500">Cart
+              <i class="fa fa-shopping-cart"></i>
+            </a>
           </li>
           <li>
             <a class="block py-2 px-3 text-gray-900 rounded-sm" aria-current="page" routerLink="/brands" routerLinkActive="active bg-green-500">Brands</a>

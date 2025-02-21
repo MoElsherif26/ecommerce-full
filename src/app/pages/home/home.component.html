@@ -1,6 +1,6 @@
-<section class="container">
+<section >
 
-  <section class="main-slider py-5">
+  <section class="main-slider">
     <div class="flex">
       <div class="slider w-[70%]">
         <owl-carousel-o [options]="customMainSlider">
@@ -25,7 +25,7 @@
   </section>
 
 
-  <section class="cat-slider py-5">
+  <section class="cat-slider px-10 py-5">
     <h2 class="text-3xl mb-3 text-center italic">Our Categories</h2>
     <owl-carousel-o [options]="customOptions">
 
@@ -33,7 +33,7 @@
           <ng-template carouselSlide>
             <div>
               <img [src]="category.image" class="h-[280px]" alt="">
-              <h3 class="text-green-700 mt-5">{{category.name}}</h3>
+              <h3 class="text-green-700 text-2xl text-center mt-5">{{category.name}}</h3>
             </div>
           </ng-template>
         }
@@ -46,9 +46,9 @@
 
     <input type="text" [(ngModel)]="searchTerm" placeholder="Search products..." class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-[50%] mx-auto my-5 p-2.5">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+    <div class="grid px-10 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-10">
       @for (product of productList.slice(0, 12) | search: searchTerm; track $index) {
-        <div class="card w-full border border-gray-200 rounded-lg shadow-sm">
+        <div class="card w-full hover:border-green-700 rounded-2xl duration-200 border border-gray-100 shadow-lg">
           <a [routerLink]="['/details', product.id]">
             <div class="card-img">
               <img [src]="product.imageCover" alt="">
@@ -75,7 +75,7 @@
                 <span>{{product.ratingsAverage}}</span>
             </div>
           </div>
-          <button (click)="addToCart(product.id)" class="bg-green-600 text-white w-[80%] mx-auto py-4 mb-2 block rounded-md">
+          <button (click)="addToCart(product.id)" class="bg-green-600 hover:bg-green-900 text-white w-[80%] mx-auto py-2 mb-2 block rounded-md">
             Add To Cart <i class="fa fa-shopping-cart"></i>
           </button>
 

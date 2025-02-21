@@ -3,8 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+// @theme {
+//   --color-main: #0aad0a;
+//   --color-light: #f0f3f2;
+//   --color-rating: #ffc908;
+//   --shadow-main: rgba(145, 158, 171, .2) 0px 2px 4px -1px, rgba(145, 158, 171, .14) 0px 4px 5px 0px, rgba(145, 158, 171, .12) 0px 1px 10px 0px;
+// }
+
 .main-btn {
-  @apply bg-green-500 text-white block ms-auto rounded-md px-6 py-2 hover:bg-green-700 disabled:bg-green-900
+  @apply bg-green-500 text-white block ms-auto rounded-md px-6 py-2 hover:bg-green-900 duration-200  disabled:bg-green-900
 }
 
 h1, h2, h3, h4, h5, h6{

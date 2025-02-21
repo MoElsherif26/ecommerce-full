@@ -30,11 +30,14 @@ export class HomeComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
-    dots: false,
+    dots: true,
     navSpeed: 700,
     navText: ['<i class="fa fa-arrow-left"></i>', '<i class="fa fa-arrow-right"></i>'],
     items: 1,
-    nav: true
+    nav: false,
+    autoplay: true,  // Enable auto sliding
+    autoplayTimeout: 1500, // Time in ms (3 seconds)
+    autoplayHoverPause: true // Pause autoplay on mouse hover
   }
 
   // owl slider options
@@ -43,7 +46,7 @@ export class HomeComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: false,
-    dots: false,
+    dots: true,
     navSpeed: 700,
     navText: ['<i class="fa fa-arrow-left"></i>', '<i class="fa fa-arrow-right"></i>'],
     responsive: {
@@ -57,10 +60,13 @@ export class HomeComponent implements OnInit {
         items: 3
       },
       940: {
-        items: 4
+        items: 6
       }
     },
-    nav: true
+    nav: false,
+    autoplay: true,  // Enable auto sliding
+    autoplayTimeout: 1500, // Time in ms (3 seconds)
+    autoplayHoverPause: true // Pause autoplay on mouse hover
   }
 
   constructor(private products: ProductsService, private categories: CategoriesService, private cartService: CartService, 
