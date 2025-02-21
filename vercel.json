@@ -1,0 +1,10 @@
+{
+    "routes": [
+        {
+            "src": "/check-out/:id",
+            "dest": "/check-out/[id]",
+            "renderMode": "default"
+        }
+    ]
+}
+  

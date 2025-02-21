@@ -1,1 +1,17 @@
-<p>categories works!</p>
+<section class="container p-10">
+    <h2 class="text-4xl font-bold text-green-800 text-center">All Categories</h2>
+    <div class="grid gap-4 py-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        @for (category of allCategories; track $index) {
+            <div class="cursor-pointer shadow-md hover:shadow-green-600 duration-300 flex flex-col items-center p-4 border rounded-lg">
+                <!-- Fixed Image Wrapper -->
+                <div class="w-full h-60 overflow-hidden flex items-center justify-center">
+                    <img [src]="category.image" alt="" class="w-full h-full rounded-md">
+                </div>
+                <!-- Category Name -->
+                <p class="text-center text-xl text-green-700 mt-2">
+                    {{ category.name | titlecase }}  
+                </p>
+            </div>
+        }
+    </div>
+</section>
