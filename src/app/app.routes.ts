@@ -3,8 +3,6 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 import { authGuard } from './core/guards/auth.guard';
 import { loggedGuard } from './core/guards/logged.guard';
-import { CheckoutComponent } from './pages/checkout/checkout.component';
-import { RenderMode } from '@angular/ssr';
 
 export const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},
@@ -22,15 +20,10 @@ export const routes: Routes = [
     {path: "categories", canActivate: [authGuard], loadComponent: () => import("./pages/categories/categories.component").then((c) => c.CategoriesComponent), title: "categories"},
     {path: "products", canActivate: [authGuard], loadComponent: () => import("./pages/products/products.component").then((c) => c.ProductsComponent), title: "products"},
     {path: "allorders", canActivate: [authGuard], loadComponent: () => import("./pages/all-orders/all-orders.component").then((c) => c.AllOrdersComponent), title: "all orders"},
-    // {
-    //   path: "check-out/:id", 
-    //   canActivate: [authGuard], loadComponent: () => import("./pages/checkout/checkout.component").then((c) => c.CheckoutComponent), 
-    //   title: "checkout"
-    // },
-    {path: "check-out/:id", component: CheckoutComponent, title: "checkout",
-      data: {
-        renderMode: RenderMode.Server
-      }
+    {
+      path: "check-out/:id", 
+      canActivate: [authGuard], loadComponent: () => import("./pages/checkout/checkout.component").then((c) => c.CheckoutComponent), 
+      title: "checkout"
     },
     {path: "details/:id", canActivate: [authGuard], loadComponent: () => import("./pages/details/details.component").then((c) => c.DetailsComponent), title: "details"},
 

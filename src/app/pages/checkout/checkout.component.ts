@@ -1,7 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { OrdersService } from '../../core/services/orders.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-checkout',
@@ -15,7 +16,7 @@ export class CheckoutComponent implements OnInit {
 
   checkOutForm!: FormGroup;
 
-  
+  platformId = inject(PLATFORM_ID);
 
   constructor(private activatedRoute: ActivatedRoute, private orders: OrdersService) {}
 
@@ -36,7 +37,9 @@ export class CheckoutComponent implements OnInit {
     if (this.checkOutForm.valid) {
       this.orders.onlinePayment(this.cartId, this.checkOutForm.value).subscribe({
         next: (res) => {
-          window.open(res.session.url, "_self");
+          if (isPlatformBrowser(this.platformId)) {
+            window.open(res.session.url, "_self");
+          }
         },
         error: (err) => {
         }
