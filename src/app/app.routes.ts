@@ -19,6 +19,7 @@ export const routes: Routes = [
     {path: "brands", canActivate: [authGuard], loadComponent: () => import("./pages/brands/brands.component").then((c) => c.BrandsComponent), title: "brands"},
     {path: "categories", canActivate: [authGuard], loadComponent: () => import("./pages/categories/categories.component").then((c) => c.CategoriesComponent), title: "categories"},
     {path: "products", canActivate: [authGuard], loadComponent: () => import("./pages/products/products.component").then((c) => c.ProductsComponent), title: "products"},
+    {path: "wish-list", canActivate: [authGuard], loadComponent: () => import("./pages/wish-list/wish-list.component").then((c) => c.WishListComponent), title: "wish-list"},
     {path: "allorders", canActivate: [authGuard], loadComponent: () => import("./pages/all-orders/all-orders.component").then((c) => c.AllOrdersComponent), title: "all orders"},
     {
       path: "check-out/:id", 

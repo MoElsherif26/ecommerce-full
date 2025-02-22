@@ -1,3 +1,4 @@
+import { WishlistService } from './../../core/services/wishlist.service';
 import { CartService } from './../../core/services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../core/services/products.service';
@@ -69,7 +70,7 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(private products: ProductsService, private categories: CategoriesService, private cartService: CartService, 
-    private toastr: ToastrService
+    private toastr: ToastrService, private wishlistService: WishlistService
   ) { }
 
   ngOnInit(): void {
@@ -78,15 +79,32 @@ export class HomeComponent implements OnInit {
   }
 
   getProducts() {
-    this.products.getProducts().subscribe(
-      {
-        next: (res) => {
-          this.productList = res.data;
-        },
-        error: (error) => {
-        }
+    this.products.getProducts().subscribe({
+      next: (res) => {
+        // Initialize each product with isWishlisted set to false.
+        this.productList = res.data.map((p: Product) => ({ ...p, isWishlisted: false }));
+
+        // Now fetch the user's wishlist from the server.
+        this.wishlistService.getUserWishlist().subscribe({
+          next: (wishlistRes) => {
+            // extract the wishlist IDs.
+            const wishlistIds: string[] = wishlistRes.data.map((item: any) => item.id);
+            // Update each product if it's found in the wishlist.
+            this.productList.forEach(product => {
+              if (wishlistIds.includes(product.id)) {
+                product.isWishlisted = true;
+              }
+            });
+          },
+          error: (err) => {
+            // console.error('Error fetching wishlist', err);
+          }
+        });
+      },
+      error: (error) => {
+        // console.error('Error fetching products', error);
       }
-    );
+    });
   }
 
   getCategories() {
@@ -116,6 +134,34 @@ export class HomeComponent implements OnInit {
     this.toastr.success(message);
   }
 
+  toggleWishlist(product: Product) {
+    if (!product.isWishlisted) {
+      // Add product to wishlist.
+      this.wishlistService.addProductToWishlist(product.id).subscribe({
+        next: (res) => {
+          product.isWishlisted = true;
+          this.showSuccess(res.message);
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
+    } else {
+      // Remove product from wishlist.
+      this.wishlistService.removeProductFromWishlist(product.id).subscribe({
+        next: (res) => {
+          product.isWishlisted = false;
+          this.showSuccess(res.message);
+        },
+        error: (err) => {
+          console.error(err);
+        }
+      });
+    }
+  }
+
   
+
+
 
 }

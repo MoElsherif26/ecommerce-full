@@ -69,6 +69,12 @@
             <i class="fa-solid fa-star text-yellow-500"></i>
             <span>{{product.ratingsAverage}}</span>
           </div>
+          <div>
+            <!-- Toggle heart color based on isWishlisted -->
+            <i (click)="toggleWishlist(product)"
+              [class]="{'text-red-500': product.isWishlisted, 'text-black': !product.isWishlisted}"
+               class="fa-solid fa-heart cursor-pointer"></i>
+          </div>
         </div>
         <button (click)="addToCart(product.id)"
           class="bg-green-600 hover:bg-green-900 text-white w-[80%] mx-auto py-2 mb-2 block rounded-md">

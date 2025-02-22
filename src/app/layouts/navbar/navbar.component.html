@@ -49,6 +49,17 @@
           <a class="block py-2 px-3 text-white rounded-sm" aria-current="page" routerLink="/products"
             routerLinkActive="active bg-green-500">Products</a>
         </li>
+        <li>
+          <a class="block py-2 px-3 text-white rounded-sm" aria-current="page" routerLink="/wish-list"
+            routerLinkActive="active bg-green-500">Wish-List
+            <i class="fa-solid fa-heart text-red-500 relative">
+              {{wishListCount}}
+              <!-- <div
+                class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-green-500 border-2 border-l rounded-full bottom-3 left-3">
+                {{cartCount}}</div> -->
+            </i>
+          </a>
+        </li>
       </ul>
       }
 
