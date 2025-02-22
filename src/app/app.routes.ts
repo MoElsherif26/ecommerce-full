@@ -4,6 +4,7 @@ import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.compon
 import { authGuard } from './core/guards/auth.guard';
 import { loggedGuard } from './core/guards/logged.guard';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { RenderMode } from '@angular/ssr';
 
 export const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},
@@ -26,9 +27,13 @@ export const routes: Routes = [
     //   canActivate: [authGuard], loadComponent: () => import("./pages/checkout/checkout.component").then((c) => c.CheckoutComponent), 
     //   title: "checkout"
     // },
-    {path: "check-out/:id", component: CheckoutComponent, title: "checkout"},
+    {path: "check-out/:id", component: CheckoutComponent, title: "checkout",
+      data: {
+        rendermode: RenderMode.Server
+      }
+    },
     {path: "details/:id", canActivate: [authGuard], loadComponent: () => import("./pages/details/details.component").then((c) => c.DetailsComponent), title: "details"},
-
+    
     {path: "**", loadComponent: () => import("./pages/not-found/not-found.component").then((c) => c.NotFoundComponent), title: "not-found"}
   ]},
 
