@@ -29,11 +29,11 @@ export const routes: Routes = [
     // },
     {path: "check-out/:id", component: CheckoutComponent, title: "checkout",
       data: {
-        rendermode: RenderMode.Server
+        renderMode: RenderMode.Server
       }
     },
     {path: "details/:id", canActivate: [authGuard], loadComponent: () => import("./pages/details/details.component").then((c) => c.DetailsComponent), title: "details"},
-    
+
     {path: "**", loadComponent: () => import("./pages/not-found/not-found.component").then((c) => c.NotFoundComponent), title: "not-found"}
   ]},
 
