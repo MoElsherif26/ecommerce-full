@@ -49,17 +49,15 @@
           <a class="block py-2 px-3 text-white rounded-sm" aria-current="page" routerLink="/products"
             routerLinkActive="active bg-green-500">Products</a>
         </li>
-        <li>
+        <!-- <li>
           <a class="block py-2 px-3 text-white rounded-sm" aria-current="page" routerLink="/wish-list"
             routerLinkActive="active bg-green-500">Wish-List
-            <i class="fa-solid fa-heart text-red-500 relative">
+            <i class="fa-solid fa-heart text-red-500">
               {{wishListCount}}
-              <!-- <div
-                class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-green-500 border-2 border-l rounded-full bottom-3 left-3">
-                {{cartCount}}</div> -->
+              
             </i>
           </a>
-        </li>
+        </li> -->
       </ul>
       }
 
@@ -80,6 +78,16 @@
         }
 
         @else {
+          <li>
+            <a class="block py-2 px-3 text-white rounded-sm" aria-current="page" routerLink="/wish-list"
+              routerLinkActive="active bg-green-500">
+              <i class="fa-solid fa-heart text-red-500">
+                <span class="text-black mx-1">wish</span>
+                <span>{{wishListCount}}</span>
+                
+              </i>
+            </a>
+          </li>
         <li>
           <a class="block py-2 px-3 cursor-pointer text-lg rounded-lg text-white hover:text-red-700 duration-300"
             aria-current="page" (click)="logout()">Logout</a>
