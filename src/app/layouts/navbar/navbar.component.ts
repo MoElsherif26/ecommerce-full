@@ -21,9 +21,9 @@ export class NavbarComponent implements OnInit {
 
   }
   ngOnInit() {
-    // this.flowbiteService.loadFlowbite(flowbite => {
+    this.flowbiteService.loadFlowbite(flowbite => {
       
-    // });
+    });
     this.cartService.cartItemsCount.subscribe(count => {
       this.cartCount = count;
     });
