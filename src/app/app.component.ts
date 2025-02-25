@@ -16,10 +16,6 @@ export class AppComponent implements OnInit {
   PID = inject(PLATFORM_ID);
   constructor(private flowbiteService: FlowbiteService) {}
   ngOnInit(): void {
-    if (isPlatformBrowser(this.PID)) {
-      initFlowbite();
-      
-    }
     this.flowbiteService.loadFlowbite(flowbite => {});
   }
 }

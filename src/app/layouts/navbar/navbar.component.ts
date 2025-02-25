@@ -15,15 +15,8 @@ export class NavbarComponent implements OnInit {
   cartCount: number = 0;
   wishListCount: number = 0;
 
-  constructor(private authService: AuthService, private cartService: CartService, private wishlistService: WishlistService,
-    private flowbiteService: FlowbiteService
-  ) {
-
-  }
+  constructor(private authService: AuthService, private cartService: CartService, private wishlistService: WishlistService) {}
   ngOnInit() {
-    this.flowbiteService.loadFlowbite(flowbite => {
-      
-    });
     this.cartService.cartItemsCount.subscribe(count => {
       this.cartCount = count;
     });
