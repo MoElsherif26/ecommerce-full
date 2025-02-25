@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FlowbiteService } from './core/services/flowbite.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,7 @@ export class AppComponent implements OnInit {
   title = 'ecommerce-full';
   constructor(private flowbiteService: FlowbiteService) {}
   ngOnInit(): void {
-    this.flowbiteService.loadFlowbite(flowbite => {
-      
-    });
+    // initFlowbite();
+    this.flowbiteService.loadFlowbite(flowbite => {});
   }
 }
