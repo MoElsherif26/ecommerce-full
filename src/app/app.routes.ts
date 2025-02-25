@@ -6,7 +6,7 @@ import { loggedGuard } from './core/guards/logged.guard';
 
 export const routes: Routes = [
   {path: "", redirectTo: "home", pathMatch: "full"},
-
+  
   {path: "", component: AuthLayoutComponent, children: [
     {path: "login", canActivate: [loggedGuard], loadComponent: () => import("./pages/login/login.component").then((c) => c.LoginComponent), title: "login"},
     {path: "register", canActivate: [loggedGuard], loadComponent: () => import("./pages/register/register.component").then((c) => c.RegisterComponent), title: "register"},

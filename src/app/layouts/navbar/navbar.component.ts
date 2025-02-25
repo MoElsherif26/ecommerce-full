@@ -1,9 +1,8 @@
 import { WishlistService } from './../../core/services/wishlist.service';
 import { CartService } from './../../core/services/cart.service';
 import { AuthService } from './../../core/services/auth.service';
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { FlowbiteService } from '../../core/services/flowbite.service';
 @Component({
   selector: 'app-navbar',
   imports: [RouterLink, RouterLinkActive],
@@ -14,6 +13,7 @@ export class NavbarComponent implements OnInit {
   @Input() isLogin: boolean = true;
   cartCount: number = 0;
   wishListCount: number = 0;
+  isMenuOpen = false;
 
   constructor(private authService: AuthService, private cartService: CartService, private wishlistService: WishlistService) {}
   ngOnInit() {
@@ -25,8 +25,14 @@ export class NavbarComponent implements OnInit {
       this.wishListCount = count;
     });
   }
+  
   logout() {
     this.authService.logout();
   }
+
+
+toggleMenu() {
+  this.isMenuOpen = !this.isMenuOpen;
+}
 
 }
